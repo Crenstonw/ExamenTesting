@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,8 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 
 import java.util.Set;
 import java.util.UUID;
@@ -31,6 +34,9 @@ class IntegrationTestTemplate {
 	JwtProvider jwtProvider;
 	@Autowired
 	private TestRestTemplate restTemplate;
+
+	@MockBean
+	MockMvc mockMvc;
 
 	private HttpHeaders adminHeaders;
 	private PasswordEncoder passwordEncoder;
@@ -52,7 +58,7 @@ class IntegrationTestTemplate {
 	@Test
 	@WithMockUser("ADMIN")
 	void test() {
-
+		mockMvc.perform();
 		assertTrue(true);
 	}
 

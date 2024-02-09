@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -39,6 +40,8 @@ public class ServiceTestTemplate {
                 new DatoMeterologicoPK("sevilla", LocalDate.of(2024, 2, 7)),
                 3);
         repository.saveAll(Set.of(d1, d2, d3));
+
+        Mockito.when(repository.saveAll(Set.of(d1, d2, d3))).thenReturn(repository.buscarPorPoblacion("sevilla"));
 
         Map<String, Double> resultado = servicio.mediaDiaSemana("sevilla");
 
