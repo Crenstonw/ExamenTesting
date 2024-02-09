@@ -1,0 +1,1 @@
+DROP TABLE dato_meteorologico CASCADE;
